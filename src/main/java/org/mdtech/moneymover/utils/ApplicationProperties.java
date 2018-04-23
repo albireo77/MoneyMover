@@ -13,8 +13,7 @@ public class ApplicationProperties {
 	private static final Properties props = new Properties();
 	
 	static {
-		InputStream is = ApplicationProperties.class.getClassLoader().getResourceAsStream("moneymover.properties");
-		try {
+		try (InputStream is = ApplicationProperties.class.getClassLoader().getResourceAsStream("moneymover.properties")) {
 			if (is != null) {
 				props.load(new InputStreamReader(is));
 			} else {
@@ -22,14 +21,6 @@ public class ApplicationProperties {
 			}
 		} catch(IOException e) {
 			LOG.error("Failed to load properties: " + e.getMessage());
-		} finally {
-			if (is != null) {
-				try {
-					is.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
 		}
 	}
 	

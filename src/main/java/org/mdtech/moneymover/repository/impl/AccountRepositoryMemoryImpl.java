@@ -8,7 +8,7 @@ import org.mdtech.moneymover.entity.Account;
 import org.mdtech.moneymover.error.RepositoryException;
 import org.mdtech.moneymover.repository.AccountRepository;
 
-public class AccountRepositoryInMemory implements AccountRepository {
+public class AccountRepositoryMemoryImpl implements AccountRepository {
 	
 	private static final Map<String, Account> repo;
 	
