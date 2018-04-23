@@ -2,7 +2,6 @@ package org.mdtech.moneymover.utils;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.Properties;
 
 import org.apache.log4j.Logger;
@@ -15,7 +14,7 @@ public class ApplicationProperties {
 	static {
 		try (InputStream is = ApplicationProperties.class.getClassLoader().getResourceAsStream("moneymover.properties")) {
 			if (is != null) {
-				props.load(new InputStreamReader(is));
+				props.load(is);
 			} else {
 				LOG.warn("Properties file not found. Will be using default values.");
 			}
