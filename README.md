@@ -1,4 +1,3 @@
-aa
 # MoneyMover
 Money Mover REST Application
 
