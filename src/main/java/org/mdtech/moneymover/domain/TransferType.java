@@ -2,11 +2,9 @@ package org.mdtech.moneymover.domain;
 
 public enum TransferType {
 	
-	CREDIT_TRANSFER_IN("ctin", "Credit Transfer Incoming"),
-	CREDIT_TRANSFER_OUT("ctout", "Credit Transfer Outgoing"),
-	DIRECT_DEBIT_IN("ddin", "Direct Debit Incoming"),
-	DIRECT_DEBIT_OUT("ddout", "Direct Debit Outgoing"),
-	UNKNOWN("unknown", "Unknown Transfer");
+	CREDIT_TRANSFER("ct", "Credit Transfer"),
+	DIRECT_DEBIT("dd", "Direct Debit"),
+	BALANCE("bl", "Balance");
 	
 	private String code;
 	private String description;
@@ -31,7 +29,7 @@ public enum TransferType {
 				return type;
 			}
 		}
-		return UNKNOWN;
+		return null;
 	}
 	
 	@Override

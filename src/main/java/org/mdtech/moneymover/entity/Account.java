@@ -13,14 +13,14 @@ public class Account {
 	@GeneratedValue
 	long accountId;
 
-	String iban;
-	BigDecimal amount;
+	private String number;
+	private BigDecimal balance;
 	
-	public static Account of(String iban, BigDecimal amount) {
+	public static Account of(String number, BigDecimal balance) {
 		
 		Account account = new Account();
-		account.setIban(iban);
-		account.setAmount(amount);
+		account.setNumber(number);
+		account.setBalance(balance);
 		return account;
 	}
 
@@ -32,27 +32,27 @@ public class Account {
 		this.accountId = accountId;
 	}
 	
-	public String getIban() {
-		return iban;
+	public String getNumber() {
+		return number;
 	}
 	
-	public void setIban(String iban) {
-		this.iban = iban;
+	public void setNumber(String number) {
+		this.number = number;
 	}
 	
-	public BigDecimal getAmount() {
-		return amount;
+	public BigDecimal getBalance() {
+		return balance;
 	}
 	
-	public void setAmount(BigDecimal amount) {
-		this.amount = amount;
+	public void setBalance(BigDecimal balance) {
+		this.balance = balance;
 	}
 	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((iban == null) ? 0 : iban.hashCode());
+		result = prime * result + ((number == null) ? 0 : number.hashCode());
 		return result;
 	}
 
@@ -65,10 +65,10 @@ public class Account {
 		if (getClass() != obj.getClass())
 			return false;
 		Account other = (Account) obj;
-		if (iban == null) {
-			if (other.iban != null)
+		if (number == null) {
+			if (other.number != null)
 				return false;
-		} else if (!iban.equals(other.iban))
+		} else if (!number.equals(other.number))
 			return false;
 		return true;
 	}

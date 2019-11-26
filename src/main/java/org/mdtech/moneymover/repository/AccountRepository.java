@@ -7,6 +7,6 @@ public interface AccountRepository {
 	
 	void update(Account account) throws RepositoryException;
 	
-	Account getByIban(String iban) throws RepositoryException;
+	Account getByNumber(String account) throws RepositoryException;
 
 }

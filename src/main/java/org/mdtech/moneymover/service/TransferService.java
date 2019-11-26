@@ -1,6 +1,9 @@
 package org.mdtech.moneymover.service;
 
+import org.mdtech.moneymover.error.Error;
 import org.mdtech.moneymover.domain.Transfer;
+
+import java.util.List;
 
 public interface TransferService {
 	
@@ -18,8 +21,8 @@ public interface TransferService {
 
 	/**
 	 * Validates transfer data. 
-     * @param Transfer object
-     * @return true if transfer is valid
+     * @param {@link Transfer} object
+     * @return list of validation errors
 	 */
-	boolean validate(Transfer transfer);
+	List<Error> validate(Transfer transfer);
 }

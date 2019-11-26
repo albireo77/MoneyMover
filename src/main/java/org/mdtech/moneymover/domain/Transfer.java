@@ -1,8 +1,11 @@
 package org.mdtech.moneymover.domain;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.mdtech.moneymover.error.Error;
 
 public class Transfer {
 	
@@ -10,20 +13,22 @@ public class Transfer {
 	
 	private TransferType type;
 	private BigDecimal amount;
-	private String iban;
+	private String origAccount;
+	private String destAccount;
 	private TransferStatus status = TransferStatus.NEW;
-	private String errorInfo;
-	
-	public static Transfer of(String code, String iban, String amount) {
+	private List<Error> errors;
+
+	public static Transfer of(String code, String origAccount, String destAccount, String amount) {
 		
 		Transfer transfer = new Transfer();
 		try {
 			transfer.setAmount(new BigDecimal(amount));
 		} catch (NumberFormatException e) {
-			LOG.error(String.format("Incorrect amount (%s) in transaction for account %s", amount, iban));
+			LOG.error(String.format("Incorrect amount (%s) in transaction between account %s and %s", amount, origAccount, destAccount));
 		}		
 		transfer.setType(TransferType.findByCode(code));
-		transfer.setIBAN(iban);
+		transfer.setOrigAccount(origAccount);
+		transfer.setDestAccount(destAccount);
 		return transfer;		
 	}
 	
@@ -43,12 +48,20 @@ public class Transfer {
 		this.amount = amount;
 	}
 	
-	public String getIBAN() {
-		return iban;
+	public String getOrigAccount() {
+		return origAccount;
 	}
 	
-	public void setIBAN(String iban) {
-		this.iban = iban;
+	public void setOrigAccount(String origAccount) {
+		this.origAccount = origAccount;
+	}
+	
+	public String getDestAccount() {
+		return destAccount;
+	}
+	
+	public void setDestAccount(String destAccount) {
+		this.destAccount = destAccount;
 	}
 
 	public TransferStatus getStatus() {
@@ -59,12 +72,11 @@ public class Transfer {
 		this.status = status;
 	}
 
-	public String getErrorInfo() {
-		return errorInfo;
-	}
-
-	public void setErrorInfo(String errorInfo) {
-		this.errorInfo = errorInfo;
+	public List<Error> getErrors() {
+		if (errors == null) {
+			errors = new ArrayList<>();
+		}
+		return errors;
 	}
 	
 }
